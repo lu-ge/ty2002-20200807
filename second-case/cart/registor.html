@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>注册</h2>
+    <form action="">
+        <p>请输入用户名：<input type="text" id="uname"></p>   
+        <p>请输入密码：<input type="password" id="upwd"></p> 
+         <p><input type="button" value="注册" id="reg">
+            <input type="button" value="去登录" id="go"></p>
+    </form>
+    <script src="js/cookie.js"></script>
+    <script src="js/tools.js"></script>
+    <!-- <script>
+        window.onload = function(){
+            new Registor();
+        }
+        //ES5
+        function Registor(){
+            this.text = document.querySelector('#uname');
+            this.pass = document.querySelector('#upwd');
+            this.reg = document.querySelector('#reg');
+            this.go = document.querySelector('#go');
+            this.addEvent();
+        }
+        Registor.prototype.addEvent = function(){
+            this.reg.onclick = function(){
+                let uname = this.text.value;
+                let upwd = this.pass.value;
+                
+                //正则判断
+                let re_use = /^[\u4e00-\u9fa5]{3,5}$/;
+                if(!re_use.test(uname)){
+                    alert('用户名不符合规则！');
+                    return;
+                }
+                let re_pas = /^\w{3,12}$/;
+                if(!re_pas.test(upwd)){
+                    alert('密码不符合规则！');
+                    return;
+                }
+                let cookie_str = getCookie('Registors') ? getCookie('Registors'):'';
+                let cookie_obj = convertStrToObj(cookie_str);
+                if(uname in cookie_obj){
+                    alert('用户名已存在');
+                    return;
+                }else{
+                    cookie_obj[uname] = upwd;
+                    alert('注册成功');
+                }
+                createCookie('Registor',JSON.stringify(cookie_obj),{expires : 7,path : '/'});
+
+                this.text.value = this.pass.value = '';
+            }.bind(this);
+
+            this.go.onclick = function(){
+                location.href = 'login.html';
+            }
+        }
+
+    </script> -->
+    <script>
+        window.onload = function(){
+            new Registor();
+        }
+        function Registor(){
+            this.text = document.querySelector('#uname');
+            this.pass = document.querySelector('#upwd');
+            this.reg = document.querySelector('#reg');
+            this.go = document.querySelector('#go');
+            this.addEvent();
+        }
+        Registor.prototype.addEvent = function(){
+            this.reg.onclick = function(){
+                let uname = this.text.value;
+                let upwd = this.pass.value;
+
+                let re_use = /^[\u4e00-\u9fa5]{3,5}$/;
+                if(!re_use.test(uname)){
+                    alert('用户名不符合规则');
+                    return;
+                }
+                let re_pas = /^\w{3,12}$/;
+                if(!re_pas.test(upwd)){
+                    alert('密码不符合规则');
+                    return;
+                }
+                let cookie_str = getCookie('Registors') ? getCookie('Regostors'):'';
+                let cookie_obj = convertStrToObj(cookie_str);
+                if(uname in cookie_obj){
+                    alert('用户名已存在！');
+                    return;
+                }else{
+                    cookie_obj[uname] = upwd;
+                    alert('注册成功');
+                }
+                createCookie('Registors',JSON.stringify(cookie_obj),{expires : 7,path : '/'});
+                this.text.value = this.pass.value;
+            }.bind(this);
+            this.go.onclick =function(){
+                location.href ='login.html';
+            }
+        }        
+
+
+    </script>
+    
+</body>
+</html>

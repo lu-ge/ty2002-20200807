@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 一、 求一个三位数的和
+        /* var num = prompt('请输入一个三位的正整数：');
+        var sum = parseInt(num / 100) + parseInt(num % 100 / 10) + parseInt(num % 10);
+        alert(sum); */
+        // 二、 判断一个年份是闰年还是平年
+	
+    //二、 能被 4 整除但不能被 100 整除或能被 400 整除的年份是闰年
+        /* var years = prompt('请输入一个年份：');
+        if(years % 4 === 0 && years % 100  !== 0 || years % 400 === 0){
+            alert(years + '是闰年');
+        }else{
+            alert(years + '是平年');
+        } */
+
+    // 三、判断一个数是偶数还是奇数
+       /*  var num = prompt('请输入一个整数：');
+        if(num % 2){
+            alert(num + '是奇数');
+        }else{
+            alert(num + '是偶数');
+        } */
+
+    // 四、 判断一个数是正数还是负数
+
+        /* var num = prompt('请输入一个整数：');
+        if(num > 0){
+            alert(num + '是正数');
+        }else if(num < 0){
+            alert(num + '是负数');
+        }else{
+            alert(num + '是非正非负数');
+        } */
+
+
+
+    // 五、根据成绩判断是否发放清华大学的通知书？ 
+
+        /* var num = prompt("请输入你的成绩：");
+        if(num >= 650){
+            alert("恭喜你被清华大学录取！");
+        }else{
+            alert("很抱歉，你落榜了");
+        } */
+
+// 六、输入任意两个数，然后交换位置输出（如：a=4,b=5 输出 a=5,b=4）
+    /* var a = 4;
+        var b = 5;
+        var c = a;
+        a = b;
+        b = c;
+        console.log(a,b); */
+
+// 七、 输入任意三个数，由大到小输出
+        /* var arr = [];
+        for(var i = 0 ; i < 3; i++){
+            var num = prompt('请输入一个数') * 1;
+            arr.push(num);
+            
+            arr.sort(function(a,b){return b-a});
+            console.log(arr.join());
+        } */
+
+// 八、求两个数中的最大值？// 九、 求三个数的最大值?
+        /* function maxNumber(a,b,c){
+            var maxNum =  Math.max(a,b,c);
+            return maxNum;
+        }
+        console.log(maxNumber(6,2,76));
+        */
+
+// 十、 输入一个成绩，判断是升班还是重修
+        /* var grade = prompt('请输入你的成绩');
+        if(grade >= 90){
+            alert('升班')
+        }else{
+            alert('重修');
+        } */
+
+//  十一、 判断成绩优(90-100)良(80-89)中(70-79)差(60-69)不及格(<60)
+		/* function test(){
+			var num = parseInt(prompt('请输入你的考试分数：'));
+			switch( parseInt(num / 10) ){
+				
+				case  0 : 
+				case  1 : 
+				case  2 : 
+				case  3 : 
+				case  4 : 
+				case  5 : alert('你的成绩不及格');break;
+				case  6 : alert('你的成绩差');break;
+				case  7 : alert('你的成绩中');break;
+				case  8 : alert('你的成绩良');break;
+				case  9 : alert('你的成绩优');break;
+			}
+		}
+		test(); */
+
+// 十二、设计一个具有+、-、*、/、%的简单计算器
+
+		/* var int1 = parseInt(prompt('请输入第一个整数：'));
+		var char = prompt('请输入+、-、*、/、%中的一个运算符：');
+		var int2 = parseInt(prompt('请输入第二个整数：'));
+			if (char ==='+'){
+				alert(int1 + int2);
+			}else
+			if (char ==='-'){
+				alert(int1 - int2);
+			}else
+			if (char ==='*'){
+				alert(int1 * int2);
+			}else
+			if (char ==='/'){
+				alert(int2 === 0 ? '除数不能为零': (int1 / int2) .toFixed(2));
+			}else
+			if (char ==='%'){
+				alert(int2 === 0 ? '除数不能为零！' : (int1 % int2));
+			}else{
+            			alert('请输入算术运算符!');
+       		} */
+
+// 十三、任意输入一个数字，判断是星期几？
+		/* function week(){
+			 a = parseInt(prompt('请输入一个整数：'));
+			switch(a){
+				case 0 : alert('今天是周一');break;
+				case 1 : alert('今天是周二');break;
+				case 2 : alert('今天是周三');break;
+				case 3 : alert('今天是周四');break;
+				case 4 : alert('今天是周五');break;
+				case 5 : alert('今天是周六');break;
+				case 6 : alert('今天是周日');break;
+				default : alert('请输入0-6的一个整数');
+			}
+		}
+		week(); */ 
+
+// 十四、输入一个 0-6 的整数，判断哪一天是工作日，哪一天是休息日？
+		/* var n = parseInt(prompt('请输入一个整数:'));
+
+			switch(n){
+				case 0 : 
+				case 1 :
+				case 2 : 
+				case 3 : 
+				case 4 : alert('今天是工作日');break;
+				case 5 : 
+				case 6 : alert('今天是休息日');break;
+				default : alert('请输入0-6的一个整数');
+			} */
+
+// 十五、输入一个月份，输出这个月有多少天？
+
+		/* var n = parseInt(prompt('请输入月份:'));
+
+			switch(n){
+				case 1 :
+				case 3 :
+				case 5 :
+				case 7 :
+				case 8 :
+				case 10 :
+				case 12 : alert('该月有31天');break;
+				case 4 :
+				case 6 :
+				case 9 :
+				case 11 : alert('该月有30天');break;
+				case 2 : var a = parseInt(prompt('请输入年份:'));
+					if(a % 4 == 0 && a % 100 !== 0 || a % 400 == 0){
+						alert('该月有29天');
+					}else{
+						alert('该月有28天');
+					}break;
+			} */
+
+// 十六、判断成绩优良中差不及格
+		/* function test(){
+			var num = parseInt(prompt('请输入你的考试分数：'));
+			switch( parseInt(num / 10) ){
+				
+				case  0 : 
+				case  1 : 
+				case  2 : 
+				case  3 : 
+				case  4 : 
+				case  5 : alert('你的成绩不及格');break;
+				case  6 : alert('你的成绩差');break;
+				case  7 : alert('你的成绩中');break;
+				case  8 : alert('你的成绩良');break;
+				case  9 : alert('你的成绩优');break;
+			}
+		}
+		test(); */
+
+// 十七、计算某日是该年的第几天？
+		/* function date(){
+			var year = parseInt(prompt('请输入一个年份'));
+			var month = parseInt(prompt('请输入一个月份'));
+			var day = parseInt(prompt('请输入一个天数'));
+			var date  = 0;
+			switch(month){
+				case 12: date += 30;
+				case 11: date += 31;
+				case 10: date += 30;
+				case 9: date += 31;
+				case 8: date += 31;
+				case 7: date += 30;
+				case 6: date += 31;
+				case 5: date += 30;
+				case 4: date += 31;
+				case 3: date += !(year % 4) && year % 100  || !(year % 400) ? 29 : 28;
+				case 2: date += 31;
+				case 1: date += day;break;
+			}
+			alert(`${year}年${month}月${day}日是${year}年的第${date}天`);
+		}			
+		date();
+		 */
+
+// 十八、用 switch 实现简单计算器
+		/* function count(){
+
+			var a = parseInt(prompt('请输入一个整数:'));
+			var str = prompt('请输入一个运算符:');
+			var c = parseInt(prompt('请输入一个整数:'));
+
+			switch(str){
+				case '+' : alert( a + c);break;
+				case '-' : alert( a - c);break;
+				case '*' : alert( a * c);break;
+				case '/' : alert( a / c);break;
+				case '%' : alert( a % c);break;
+			}
+		}
+		count(); */
+
+// 十九、根据血型与性别测试性格
+		/* 	var gender = prompt('输入你的性别男、女');
+		var blood = prompt('输入你的血型ab、a、b、o');
+		switch(gender){
+
+			case '男':
+				switch(blood){
+					case 'ab' :alert('ab型的男人对事物的处理,不会为感情所左右,一切以公平、公正为原则。');break;
+					case 'b'  :alert('b型血的男人，乐观向上、宅心仁厚、处事坦率、淡泊名利、直觉比较敏感、有强烈的生命力。');break;
+					case 'a'  :alert('a型的男人很重感情,是一种认真向上的人');break;
+					case 'o'  :alert('o型血的男人健康快乐,热情奔放。常常是人群里的领导者');break;
+					default: alert('error');
+				}break;
+			case '女':
+				switch(blood){
+					case 'ab' :alert('ab型的女人对事物的处理,不会为感情所左右,一切以公平、公正为原则。');break;
+					case 'b'  :alert('b型血的女人感情表现较丰富，处事坦率、直来直去，不太拘谨。');break;
+					case 'a'  :alert('a型的女人细心、谦让、感情丰富、具有同情心、富有牺牲精神。');break;
+					case 'o'  :alert('o型血的女人健康快乐,热情奔放。自尊心强,待人慷慨大方。');break;
+					default: alert('error');
+				}break;
+				default: alert('error');
+		} */
+
+
+// 二十、设计一个简单的猜拳游戏
+
+		/* var player1 = parseInt(prompt('1 :石头 2 :剪刀 3 :布---->请选择'));
+		var player2 = parseInt(prompt('1 :石头 2 :剪刀 3 :布---->请选择'));
+		switch(player1){
+			case 1:
+				switch(player2){
+					case 1: alert('平局');break;
+					case 2: alert('玩家1胜');break;
+					case 3: alert('玩家2胜');break;
+					default : alert('玩家2犯规！');
+				};break;
+
+			case 2:
+				switch(player2){
+					case 1: alert('玩家2胜');break;
+					case 2: alert('平局');break;
+					case 3: alert('玩家1胜');break;
+					default : alert('玩家2犯规！');
+				};break;
+			case 3:
+				switch(player2){
+					case 1: alert('玩家1胜');break;
+					case 2: alert('玩家2胜');break;
+					case 3: alert('平局');break;
+					default : alert('玩家2犯规！');
+				};break;
+				default : alert('玩家1犯规！');
+		} */
+
+
+// 二十一、输出 10 个 HelloWorld 
+		/* var i = 0;
+		while( i < 10){
+			console.log('Hello World');
+			i ++;
+		} */
+
+	// 二十二、输出 1~100 的奇数
+	    /* var i = 0;
+		while(i < 100){
+			if(i % 2){
+				console.log(i);
+				
+			}
+			i ++;
+		} */
+
+// 二十三、输出 m~n 的整数
+		/* var m = prompt('请输入一个整数：');
+		var n = prompt('请再输入一个整数：');
+		if(m < n){
+			var i = m;
+			while(i <= n){
+				console.log(i);
+				i ++;
+			}
+		}else{
+			var j = m;
+			while(j >= n){
+				console.log(j);
+				j --;
+			}
+		} */
+			
+// 二十四、 求 5！(阶乘：从 1 乘到它本身)
+			/* var i = 0;
+			var num = 1;
+			while(i < 5){
+				num *= (i+1);
+				i ++;
+			}
+			console.log(num); */
+
+			/* 
+	二十五、 解决猴子吃桃的问题（有一只猴子，还有一堆桃子，
+			第一天的时候，吃了一堆桃子中的一半，没忍住，
+			又多吃了一个；第二天的时候，又吃了剩下桃子中
+			的一半，没忍住，又多吃了一个，以后每天如此，
+			直到第 10 天的时候，只剩下了一个桃子，问第一天
+			的时候有多少个桃子） 
+			*/
+
+			/* var i = 1;
+			var num = 1;
+			while( i < 10){
+				num = ((num + 1) * 2);
+				i ++;
+			}
+			console.log(num); */
+
+	// 二十六、 求 1+2+3+……+100 的和
+			/* var sum = 0;
+			for(var i = 0;i < 101;i ++){
+				sum += i;
+			}
+			console.log(sum); */
+
+	// 二十七、 输出 1-100 中(7 的倍数和带 7 的数除外）的数。
+			/* for(var i = 1;i < 101;i ++){
+				if(i % 10 == 7 || i % 7 == 0 || parseInt(i / 10) === 7){
+					console.log(i);
+				}
+			} */
+
+	// 二十八、 输出 m 至 n 的自然数中的偶数和与奇数和并统计偶数与奇数的个数分别是多少？
+			
+			/* 
+			var m = parseInt(prompt('请输入一个整数：'));
+			var n = parseInt(prompt('请输入一个整数：'));
+			var even_sum = 0;
+			var even_count = 0;
+			var odd_sum = 0;
+			var odd_count = 0;
+			if(m > n){
+				var t = m;
+				m = n;
+				n = t;
+			}
+			for(var i = m;i <= n;i ++){
+				if (i % 2) {
+					odd_sum += i;
+					odd_count ++;
+				}else{
+					even_sum +=i;
+					even_count ++;
+				}
+			}
+			console.log('偶数和：' + even_sum + '\n偶数数量：'+ even_count + '\n奇数和： ' + odd_sum + '\n奇数数量：' + odd_count);*/
+			/* var m = parseInt(prompt('请输入一个整数：'));
+			var n = parseInt(prompt('请输入一个整数：'));
+			var odd_sum = 0;
+			var odd_n = 0;
+			var event_sum = 0;
+			var event_n = 0;
+			if(n > m){
+				[m,n] = [n,m];
+			}
+			for(var i = n;i <= m;i ++){
+				if(i % 2){
+					odd_sum += i;
+					odd_n ++;
+				}else{
+					event_n ++;
+					event_sum += i;
+				}
+			}
+			console.log(`偶数和：${event_sum}\n偶数数量：${event_n}\n奇数和：${odd_sum}\n奇数数量：${odd_n}`); */
+
+	// 二十九、 入职薪水 10K，每年涨幅 5%，50 年后工资多少？
+			/* var money = 10;
+			for(var i = 0; i < 10;i ++){
+				money = money * (1+ 0.05)
+			}
+			alert(money); */
+
+			// 三十、 打印 100 以内 7 的倍数	
+
+			/* for(var i = 1;i < 101; i ++){
+				if(!(i%7)){
+					console.log(i);
+				}
+			}*/
+
+
+// 三十一、 打印 100 以内的奇数
+			/* for(var i = 1;i < 101; i ++){
+				if((i%2)){
+					console.log(i);
+				}
+			} */
+
+	// 三十二、 输出 m 行 n 列的 8
+			/* var m = parseInt(prompt('请输入一个行数：'));
+			var n = parseInt(prompt('请输入一个列数：'));
+			var str = '';
+			for(var i =0;i < m;i ++){
+				for(var j = 0;j < n; j ++){
+					str += '8';
+				}
+				str += '\n';
+			}
+			console.log(str); */
+
+	// 三十三、 输出 1~100 中的所有素数(素数：只能被 1 和它本身整除的数)
+			
+			/* for(var i = 1;i < 101;i ++){
+				for(var n = 2; n < i; n++){
+					if((i % n) === 0){
+						break;
+					}
+				}
+				if(i === n){
+					console.log(i);
+				}
+			} */
+
+	// 三十四、  输出三角形
+			// ****
+			// ***
+			// **
+			// *
+
+			/* var str = '';
+			for(var i = 0;i < 4; i ++){
+				for(var j = 4;j > i;j --){
+					str += '*';
+				}
+				str += '\n';
+			}
+			console.log(str); */
+
+	// 三十五、 输出三角形
+			// *
+			// **
+			// ***
+			// ****
+
+			/* var str = '';
+			for(var i = 0;i < 4; i ++){
+				for(var j = 0;j <= i;j ++){
+					str += '*';
+				}
+				str += '\n';
+			}
+			console.log(str); */
+
+	// 三十六、 输出三角形
+			// ****
+			//  ***
+			//   **
+			//    *
+
+			/* var str = '';
+			for(var i = 0;i < 4; i++){
+				
+				for(var j = 0;j < i;j ++){
+					str += ' ';
+				}
+				for(var n = 4;n > i;n --){
+					str += '*';
+				}
+				str += '\n';
+			}
+			console.log(str); */
+
+	// 三十七、  输出三角形
+			//    *
+			//   ***
+			//  *****
+			// *******
+
+			/* var str = '';
+			for(var i = 0;i < 4; i++){
+				
+				for(var j = 3;j > i;j --){
+					str += ' ';
+				}
+				for(var n = 0;n <= i;n ++){
+					str += '*';
+				}
+				for(var n = 0;n < i;n ++){
+					str += '*';
+				}
+				str += '\n';
+			}
+			console.log(str); */
+
+	// 三十八、  输出
+			// *+******* ****””****
+			// **+***** ****””^^****
+			// ***+*** ****””^^^^****
+			// ****+* ****””^^^^^^****
+
+			/* var str = '';
+			for(var i = 0;i < 4; i++){
+				
+				for(var j = 0; j<= i; j++){
+					str += '*';
+				}
+				str += '+';
+				for(var j = 4;j > i;j --){
+					str += '*';
+				}
+				for(var j = 3;j > i;j --){
+					str += '*';
+				}
+				str += ' ';
+				for(var j = 0; j<4; j++){
+					str += '*';
+				}
+				for(var j = 0; j<4; j++){
+					str += '’';
+				}
+				for(var j = 0; j< i; j++){
+					str += '^';
+				}
+				for(var j = 0; j< i; j++){
+					str += '^';
+				}
+				for(var j = 0; j<4; j++){
+					str += '*';
+				}
+
+				str += '\n';
+			}
+			console.log(str); */
+			
+
+	// 三十九、 输出九九乘法表
+			/* var x, y ,num;
+			var str = '';
+			for(var i = 0;i < 9; i ++){
+				for(var j = 0;j <= i;j ++){
+					
+					num = (i+1) * (j+1);
+					str += ((i+1) +'*'+(j+1)+ '='+ num+ "\t" );
+				}
+				str += '\n';
+			}
+			console.log(str); */
+
+	// 四十、 输出一元钱的兑换方案（1 角 2 角 5 角）
+			/* for(var one = 0;one < 11;one ++){
+				for(var two = 0;two < 6;two ++){
+					for(var five = 0;five < 3;five ++){
+						if(one * 1 + two * 2 + five * 5 === 10){
+							console.log(one + '张壹角' + two + '张贰角' + five + '张伍角\n');
+						}
+					}
+				}
+			} */
+
+	// 四十一、 打印 100~200 之间所有能被 3 或者 7 整除的数
+				/* for(var i = 100;i < 201;i ++){
+					if(i%3 === 0 || i%7 === 0){
+						console.log(i);
+					}
+				} */
+
+	// 四十二、 计算 100 的阶乘
+				/* var sum = 1;
+				for(var i = 1;i < 101;i ++){
+					sum *= i;
+				}
+				console.log(sum); */
+
+	// 四十三、 求 100-999 之间的水仙花数。abc = a * a * a + b * b * b + c * c * c;
+				/* for(var i = 100;i < 1000;i ++){
+					var a = parseInt(i/100);
+					var b = parseInt(i/10)%10;
+					var c = parseInt(i%10);
+					if(i === a*a*a + b*b*b +c*c*c){
+						console.log(i);
+					}
+				} */
+
+	// 四十四、 使用函数求三个数中的最大数
+
+			/* function max(a,b,c){
+				if(a > b){
+					max = a;
+					if(c > a){
+						max = c;
+					}
+				}else{
+					max = b;
+					if(c > b){
+						max = c;
+					}
+				}
+				console.log(max);
+			}
+			max(8,7,3); */
+			
+	// 四十五、 编写函数 iseven,其功能为判断一个整数是否为偶数，若是
+			// 			偶数，返回 1，否则返回 0，在程序中调用此函数，对输入的
+			// 			一个整数进行判断，若是偶数，输出 even，否则输出 。
+					/* function iseven(num){
+						if(num%2){
+							console.log('odd');
+							return 0;
+							
+						}else{
+							console.log('even');
+							return 1;
+						}
+					}
+					var n = iseven(2);
+					alert(n); */
+
+	// 四十六、 编程求 x 的阶乘和 y 的阶乘的和，要求设计一个 fac（n）函数求正整数 n 的阶乘。
+					/* function fac(n){
+						let num = 1;
+						for(var i = 1;i <= n; i ++){
+							num *= i;
+						}
+						return num;
+					}
+					console.log(fac(5) + fac(4)); */
+
+	// 四十七、  利用函数实现面积计算器（计算长方形、三角形、圆形的面积）。Math.PI
+                   /*  function rectangle(wid,hei){
+                        let S = wid * hei;
+                        return S;
+                    }
+                    console.log(rectangle(5,6));
+
+                    function triangle(bottom,hei){
+                        let S = bottom * hei / 2;
+                        return S;
+                    }
+                    console.log(triangle(5,3));
+
+                    function circular(r){
+                        let S = (Math.PI * r * r).toFixed(2);
+                        return S;
+                    }
+                    console.log(circular(2)); */
+
+
+
+// 四十八、  计算 s=2^2! + 3^2!
+            
+                /* function fn(x){
+                    var n = 2,sum = 1;
+
+                    for(i = 1;i <= n;i ++){
+                        sum *= i;
+                    }
+
+                    var fac = 1;
+                    for(i = 1;i <= sum;i ++){
+                        fac = fac * x;
+                    }
+                    return fac;
+                }
+                
+                alert(fn(2) + fn(3)); */
+
+
+// 四十九、 利用递归求 100 的阶乘
+           /*  function  fn(n){
+                var num = 1;
+                if(n > 1){
+                   num = n * fn(n - 1) 
+                }
+                return num;
+            }
+            console.log(fn(100)); */
+
+
+// 五十、 利用递归求斐波那契数列（输出前 20项）
+          /*   function fn(n){
+                if(n == 1){
+                    return 0;
+                }
+                if(n == 2){
+                    return 1;
+                }
+                if(n > 2){
+                    return fn(n - 1) + fn(n - 2);
+                }
+
+            }
+            for(i = 1;i < 21;i ++){
+                console.log(fn(i));
+            } */
+            
+			
+// 五十一、 利用递归求两个数字的最大公约数
+          /*   function gcd(m,n){
+                var  r = 0;
+                    r = m % n;
+                if (r<0){
+                    return 0;
+                }else if(r == 0){
+                    return n;
+                }else if(r>0){
+                    return  gcd(n, r);
+                }
+            }
+           
+            console.log(gcd(2,3)); */
+
+
+// 五十二、 编写一个函数，输入 n 为偶数时，调用函数求 1/2+1/4+...+1/n,
+//          当输入 n 为奇数时，调用函数求/1+1/3+...+1/n
+
+            /* function num(n){
+                var sum = 0;
+                function even(n){
+                    for(i = 2 ; i <n+1; i += 2){
+                        sum += 1/i;
+                    }
+                    return sum;
+                }
+                function odd(n){
+                    for(i = 1 ; i < n+1; i += 2){
+                        sum += 1/i;
+                    }
+                    return sum;
+                }
+                if(n % 2 === 1){
+                    return odd(n);
+                }else{
+                    return even(n);
+                }
+            }
+            alert(num(3)); */
+
+// 五十三、 成绩计算
+
+
+// 五十四、歌咏比赛  
+
+
+// 五十五、 扁平化数组  
+       /*  function flat(arr){
+            var list = [];
+            if(arr instanceof Array){
+                for(var i=0;i <arr.length;i ++){
+                    list = list.concat(flat(arr[i]));
+                }
+                
+            }else{
+                list.push(arr);
+            }
+            return list;
+        }
+
+        console.log(flat([1,2,[2,[2]],5,5])); */
+
+// 五十六、求数组中第二大的数
+
+        /* function ArrayTwo(arr){
+            for(var i = 1; i < arr.length;i ++){     
+            for(var j = 0;j < arr.length - i; j ++){   
+                if(arr[j] > arr[j + 1]){
+                    var t = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j +1] = t;
+                }
+            }
+        }  
+             return arr[arr.length - 2];
+        }
+        console.log(ArrayTwo([5,8,4,2,9])); */
+
+// 五十七、 数组去重排序
+
+        /* function ArrayUp(arr){
+            var newArr = [];
+            for(var i = 0,len = arr.length;i < len; i++){
+                if(newArr.indexOf(arr[i]) === -1){
+                    newArr.push(arr[i]);
+                }
+            }
+            for(var i = 0;i < newArr.length; i ++){
+                for(var j = i+1; j < newArr.length;j ++){
+                    if(newArr[i] > newArr[j]){
+                        var t = newArr[i];
+                        newArr[i] = newArr[j];
+                        newArr[j] = t;
+                    }
+                }
+            }
+            return newArr;
+        }
+        console.log(ArrayUp([5,8,4,8,9,1])); */
+
+
+// 五十八、 去除字符串中所有的空格。
+
+       /*  function deleSpace(str){
+           return str.replace(/\s/g,"");
+        }
+
+        console.log(deleSpace('  55  jfjk  l')); */
+
+// 五十九、 去除字符串中左边的空格与右边的空格 “   a   b   “    “a   b”
+       /*  function deleSpace(str){
+           return str.trim();
+        }
+
+        console.log(deleSpace('   a   b   '));
+        console.log(('aaaaaaaaaa')); */
+        
+
+
+// 六十、统计出一个字符串中所有大写字母的数量与所有小写字母的数量
+
+// 六十一、一次性输入多个成绩
+
+// 六十二、影响职业因素
+
+// 六十三、字符串加密
+
+// 六十四、字符串逆序输出（至少两种方法）
+
+
+// 六十五、将字符串中所有指定的内容替换成别的内容
+
+
+
+// 六十六、统计字符串中每个字符的个数
+
+// 六十七、统计每个字符出现的次数，结果显示a2b1c2d1，去掉重复的字符，使结果显示abcd（此题为13K的题）
+
+// 	如：“aabbbcddaabcc”  “a2b3c1d2a2b1c2”
+// 六十八、实现猜数字游戏（1~10，三次机会）
+
+// 六十九、封装一个随机颜色的函数
+
+// 七十、封装一个4位验证码的函数（包含数字大写字母小写字母）
+
+// 七十一、倒计时
+
+// 七十二、顶部悬浮
+
+// 七十三、广告倒计时
+
+// 七十四、回到顶部
+
+// 七十五、
+// 	i.在界面上弹出一个带输入的提示框,只能输入数字,如果输入的数字大于10,点击确定以后，弹出提示框,
+// 	ii.提示我们是否进行输入的数 + 10, confirm("是否进行输入的数 + 10")
+// 	iii.	<1>如果点击确定,输出表达式和结果,
+// 	iv.	<2>如果点击取消,重新弹出带输入的提示框，重复上述操作
+// 	v.		
+// 	vi.	如果输入的数小于10,直接弹出警告框,无法运算
+// 	vii.	
+// 	viii.2.点击取消,就不进行后面操作。直接退出循环
+
+// 七十六、 数码时钟
+
+// 七十七、 标题栏拖拽（带边界）
+
+// 七十八、鼠标跟随
+
+// 七十九、表单验证
+
+// 八十、五星评价
+
+// 八十一、轮播图
+
+// 八十二、放大镜
+
+// 八十三、瀑布流
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{width: 600px;height: 100px;
+        text-align: center;line-height:100px;
+        margin: 100px auto;
+        border: 2px solid black;
+        font-size: 30px;
+        }
+    </style>
+    <script>
+        setInterval(() => {
+            var oDiv = document.getElementById('div1');
+            oDiv.innerHTML = showTime();
+        }, 1000);
+
+
+
+        function showTime(){
+           var date = new Date();
+            // alert(date);
+            var year = date.getFullYear();
+            var month = date.getMonth();  //0~11  一月~十二月
+            var day = date.getDate();
+            var week = date.getDay();  //0 : 星期日 1~6 星期一~星期六
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            var arr_month = ['一','二','三','四','五','六','七','八','九','十','十一','十二'];
+            var arr_week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+            
+            var str = year + '年' + arr_month[month] + '月' + toDouble(day) + '日' + ' ' + arr_week[week] + ' ' + toDouble(hours) + ':' + toDouble(minutes) + ":" + toDouble(seconds);
+
+            return str;
+            // //单数变双数
+            function toDouble(n){
+                return n < 10 ? '0' + n : n;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="请猜数">
+    <input type="button" value="再来一次">
+    <script>
+
+        var oBtn1 = document.querySelectorAll('input')[0];
+        var oBtn2 = document.querySelectorAll('input')[1];
+
+
+        var b = Math.floor(Math.random() * 100)
+        oBtn1.onclick = function () {
+            for (var i = 0; i < 3; i++) {
+                var num = prompt('请输入数字');
+                console.log(num);
+                if (b > num) {
+                    alert('小了');
+                } else if (b < num) {
+                    alert('大了');
+                } else {
+                    alert('中了');
+                }
+            }
+        }
+
+        oBtn2.onclick = function () {
+            for (var i = 0; i < 3; i++) {
+                var num = prompt('请输入数字');
+                console.log(num);
+                if (b > num) {
+                    alert('小了');
+                } else if (b < num) {
+                    alert('大了');
+                } else {
+                    alert('中了');
+                }
+            }
+        }
+        console.log(b);
+
+    </script>
+</body>
+
+</html>

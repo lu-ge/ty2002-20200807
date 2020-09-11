@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <style>
+        table{border-collapse:collapse;}
+        td{border:1px solid;}
+    </style>
+    <script src="./cookie.js"></script>
+</head>
+<body>
+    <table id="tab">
+        <tr><td>序号</td><td>商品名称</td><td>商品单价</td><td>数量</td></tr>
+    </table>
+    <script>
+        class Cart{
+            constructor(){
+                this.tab = document.querySelector('#tab');
+                //初始化
+                this.init();
+            }
+            init(){
+                //获取cookie
+                 let cookie_str = getCookie('carts')?getCookie('carts'):'';
+                 let cookie_obj = this.convertStrToObj(cookie_str);
+                console.log(cookie_obj);
+                // for in 遍历对象
+                 for(let key in cookie_obj){
+                    let good = cookie_obj[key];
+                    // console.log(good);
+                    //插入一行
+                    let _tr = this.tab.insertRow();
+                    //插入一列
+                    let _td = _tr.insertCell();
+                    _td.innerText = good.num;
+                    _td = _tr.insertCell();
+                    _td.innerText = good.name;
+                    _td = _tr.insertCell();
+                    _td.innerText = good.price;
+                    _td = _tr.insertCell();
+                    _td.innerText = good.count;
+                 }
+            }
+            //将字符串转为对象
+				convertStrToObj(str){
+					if(!str){ //如果是空字符串，则返回空对象
+						return {};
+					}
+					return JSON.parse(str);
+				}
+        }
+
+        window.onload = function(){
+            new Cart();
+        }
+    </script>
+</body>
+</html>

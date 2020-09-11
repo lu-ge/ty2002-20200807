@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>登录：</h1>
+    <form action="">
+        <p>请输入用户名： <input type="text" name="" id="uname"></p>
+        <p>请输入密码：<input type="password" name="" id="upwd"></p>
+        <p><input type="button" value="登录" id="log">
+            <input type="button" value="去注册" id="go"></p>
+    </form>
+    <script src="js/cookie.js"></script>
+    <script src="js/tools.js"></script>
+    <!-- <script>
+       window.onload = function(){
+            new Login();
+        }
+        //构造函数
+        function Login(){
+            this.text = document.querySelector('#uname');
+            this.pass = document.querySelector('#upwd');
+            this.log = document.querySelector('#log');
+            this.go = document.querySelector('#go');
+            //事件
+            this.addEvent();
+        }
+        //原型方法
+        Login.prototype.addEvent = function(){
+            this.log.onclick = function(){
+                //用户名密码
+                let uname = this.text.value;
+                let upwd = this.pass.value;
+                //正是检测
+                //中文，3-5
+                let re_user = /^[\u4e00-\u9fa5]{3,5}$/;
+                if(!re_user.test(uname)){
+                    alert('用户名不符合规则！');
+                    return;
+                }
+                //字母数字下划线 3-12
+                let re_pass = /^\w{3,12}$/;
+                if(!re_pass.test(upwd)){
+                    alert('密码不符合规则！');
+                    return;
+                }
+                let cookie_str = getCookie('Registors') ? getCookie('Registors') : '';
+                //转成对象
+                let cookie_obj = convertStrToObj(cookie_str);
+                if(uname in cookie_obj){
+                    if(upwd === cookie_obj[uname]){
+                        alert('登录成功');
+                        location.href = 'product.html';
+                        return;
+                    }else{
+                        alert('密码错误！');
+                        return;
+                    }
+                    
+                }else{
+                    alert('用户名不存在！');
+                }
+            }.bind(this);
+            this.go.onclick = function(){
+                location.href = 'registor.html';
+            }
+        }
+    </script> -->
+    <script>
+        window.onload = function(){
+            new Login();
+        }
+        function Login(){
+            this.text = document.querySelector('#uname');
+            this.pass = document.querySelector('#upwd');
+            this.log = document.querySelector('#log');
+            this.go = document.querySelector('#go');
+            this.addEvent();
+        }
+        Login.prototype.addEvent = function(){
+            this.log.onclick = function(){
+                let uname = this.text.value;
+                let upwd = this.pass.value;
+
+                let re_use = /^[\u4e00-\u9fa5]{3,5}$/;
+                if(!re_use.test(uname)){
+                    alert('用户名不符合规范');
+                    return;
+                }
+                let re_pas = /^\w{3,12}$/;
+                if(!re_pas.test(upwd)){
+                    alert('密码不符合规范');
+                    return;
+                }
+                let cookie_str = getCookie('Registors') ?getCookie('Registors'):'';
+                let cookie_obj = convertStrToObj(cookie_str);
+                if(uname in cookie_obj){
+                    if(upwd === cookie_obj[uname]){
+                        alert('登录成功');
+                        location.href = 'product.html';
+                        return;
+                    }else{
+                        alert('密码错误！');
+                        return;
+                    }
+                }else{
+                    alert('用户名不存在！');
+                }
+            }.bind(this);
+            this.go.onclick = function(){
+                location.href = 'registor.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 自己出生了 天 小时 分钟 秒钟
+        var now = new Date();
+        var times1 = now.getTime();
+
+        var birth = new Date(1997,8,17,8,0,0);
+        var times2 = birth.getTime();
+
+        var life = times1 - times2;
+        console.log(life);
+
+        // 剩下的时间转换成秒
+        var ms = life/1000;
+
+        // 换算年
+        var year = parseInt( ms / (365 * 24 *60 * 60 ));
+        console.log(year);
+
+        // 换算天
+        var day = Math.floor( ms % (24 * 60 * 60 ) / (60*60)) ;
+        console.log(day);
+
+        // 换算小时
+        var hours = Math.floor( ms % (60*60*24) / (60*60));
+        console.log(hours);
+
+        // 换算分钟
+        var minutes = Math.floor( ms % (60*60) /60 );
+        console.log(minutes);
+
+        // 换算秒数
+        var seconds = Math.floor( ms % 60 );
+        console.log(seconds);
+
+        console.log('已经出生 ' + year + ' 年 '+ day + ' 天 ' + hours + ' 小时 ' + minutes + ' 分钟 ' + seconds + ' 秒!^_^')
+
+    </script>
+</body>
+</html>

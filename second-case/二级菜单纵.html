@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>随便敲敲</title>
+		<style>
+            *{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                
+            }
+            a{
+                text-decoration: none;
+            }
+            .menu{
+                width: 100px;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                background-color: skyblue;
+            }
+            .menu:hover .menu_one .lin{
+                display: block;
+            }
+            .menu_one .lin{
+                width: 100px;
+                height: 50px;
+                background-color: skyblue;
+                text-align: center;
+                line-height: 50px;
+                position: relative;
+                display: none;
+            }
+            .menu_one li .menu_two{
+                position: absolute;
+                left: 100px;
+                
+                width: 400px;
+                height: 400px;
+                background-color: rgb(24, 218, 127);
+                display: none;
+            }
+            .menu_one li .lins1{
+                top: 0;
+            } 
+            .menu_one li .lins2{
+                top: -50px;
+            } 
+            .menu_one li .lins3{
+                top: -100px;
+            } 
+            .menu_one li .lins4{
+                top: -150px;
+            } 
+            .menu_one li .lins5{
+                top: -200px;
+            } 
+            .menu_one .lin:hover{
+                background-color: rgb(102, 80, 201);
+            }
+            .menu_one .lin:hover .menu_two{
+                display: block;
+            }
+            .menu_one li .menu_two li:hover{
+                background-color: rgb(137, 211, 68);
+                
+            }
+        </style>
+	</head>
+	<body>
+        <div class="menu">
+            菜单
+        
+		<ul class='menu_one'>
+			<li class="lin"><a href="#">一级目录</a> 
+				<ul class='menu_two lins1'>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+					
+				</ul>
+            </li>
+            <li class="lin"><a href="#">一级目录</a> 
+				<ul class='menu_two lins2'>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+					
+				</ul>
+            </li>
+            <li class="lin"><a href="#">一级目录</a> 
+				<ul class='menu_two lins3'>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+					
+				</ul>
+            </li>
+            <li class="lin"><a href="#">一级目录</a> 
+				<ul class='menu_two lins4'>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+					
+				</ul>
+            </li>
+            <li class="lin"><a href="#">一级目录</a> 
+				<ul class='menu_two lins5'>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+                    <li><a href="#">二级目录</a></li>
+				</ul>
+			</li>
+        </ul>
+    </div>
+	</body>
+</html>

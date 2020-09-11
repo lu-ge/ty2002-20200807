@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#ul1{
+				width: 200px;
+				height: 28px;
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			#ul1 li{
+				width: 27px;
+				height: 28px;
+				float: left;
+				background: url(star.gif) no-repeat 0 0;
+				
+			}
+		</style>
+		
+	</head>
+	<body>
+		<ul id="ul1">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div id="box"></div>
+
+		<script>
+			/*
+				变量：
+				获取div
+				获取五颗星
+				click_index
+				flag = false;
+				arr = ['差','一般','好','很好','非常好']
+
+				移入事件
+					if(是否点击过){
+						if(移入点过的星星后){
+							//星星变为金色
+							先将所有的星星变为灰色
+							从下标为0开始，到移入星星的位置，变量金色。
+						}
+					}else{
+						先将所有的星星变为灰色
+						从下标为0开始，到移入星星的位置，变量金色。
+					}
+				点击事件
+					记录点击的位置
+					click_index = 当前点击的下标值
+					记录状态
+					flag = true
+					文字添加到div中
+			*/
+			function Star(){
+				//属性
+				this.div = document.querySelector('#box');
+				//五颗星
+				this.lis = document.querySelectorAll('#ul1 li');
+				//记录点击下标的变量
+				this.click_index = -1;
+				//点击的开关
+				this.flag = false; //没有点击前是false
+				//信息
+				this.arr = ['差','一般','好','很好','非常好'];
+				//调用添加事件的方法
+				this.addEvent();
+			}
+			Star.prototype.addEvent = function(){
+				
+				for(let i = 0,len = this.lis.length;i < len;i ++){
+					//移入
+					this.lis[i].onmouseenter = function(){
+						//点击过
+						if(this.flag){
+							//移入点过位置后面
+							if(i >= this.click_index){
+								//所有星星变为灰色
+								for(let j = 0;j < this.lis.length;j ++){
+									this.lis[j].style.background = 'url(star.gif) no-repeat 0 0';
+								}
+								//从0到移入的位置，金色
+								for(let k = 0;k <= i;k ++){
+									this.lis[k].style.background = 'url(star.gif) no-repeat 0 -28px';
+								}
+							}
+						}else{ //未点击过
+							//所有星星变为灰色
+							for(let j = 0;j < this.lis.length;j ++){
+								this.lis[j].style.background = 'url(star.gif) no-repeat 0 0';
+							}
+							//从0到移入的位置，金色
+							for(let k = 0;k <= i;k ++){
+								this.lis[k].style.background = 'url(star.gif) no-repeat 0 -28px';
+							}
+						}
+					}.bind(this);
+					//点击
+					this.lis[i].onclick = function(){
+						// 记录点击的位置
+						this.click_index = i;
+						//记录状态
+						this.flag = true;
+						// 文字添加到div中
+						this.div.innerHTML = this.arr[i];
+					}.bind(this);
+				}
+				
+
+			}
+
+			new Star();
+		</script>
+	</body>
+</html>

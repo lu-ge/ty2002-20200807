@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品页</title>
+    <style>
+        table {
+			border-collapse: collapse;
+            /* 为表格设置合并边框 */
+		}
+
+		td {
+			border: 1px solid;
+		}
+    </style>
+
+<script src="./cookie.js"></script>
+
+</head>
+<body>
+    <table>
+        <tr>
+            <td>商品名</td>
+            <td>价格</td>
+            <td>操作</td>
+        </tr>
+        <!-- 自定义属性  date-cart-id="sp1" 
+        获取  obj.getAttribute("date-cart-id");-->
+        <tr data-cart-id="sp1"> 
+            <td><input type="hidden" value="1">水杯</td>
+            <td>29</td>
+            <td><a class="buy" href="javascript:;">购买</a></td>
+            <!-- href="javascript:;" 相当于执行a标签的click事件,这里为空 -->
+        </tr>
+        <tr data-cart-id="sp2">
+			<td><input type="hidden" value="2">电脑</td>
+			<td>4999</td>
+			<td><a class="buy" href="javascript:;">购买</a></td>
+		</tr>
+		<tr data-cart-id="sp3">
+			<td><input type="hidden" value="3">手机</td>
+			<td>1999</td>
+			<td><a class="buy" href="javascript:;">购买</a></td>
+		</tr>
+    </table>
+    <button>查看购物车</button>
+
+    <script>
+        class Product{
+            constructor(){
+                //获取按钮
+                this.cart_btn = document.querySelector('button');
+                this.buy = document.querySelectorAll('.buy');
+                //添加事件
+                this.addEvent();
+            }
+            addEvent(){
+                this.cart_btn.onclick = function(){
+                    location.href = 'cart.html';
+                }
+                let that = this;
+                //遍历数组，添加事件
+                for(let i = 0,len = this.buy.length;i < len;i ++){
+                    this.buy[i].onclick = function(){
+                        //商品ID，编号、名称、价格、数量
+                        let good_id = this.parentNode.parentNode.getAttribute("data-cart-id");
+                        let good_num = this.parentNode.parentNode.firstElementChild.firstElementChild.value;
+                        let good_name = this.parentNode.parentNode.firstElementChild.lastChild.nodeValue;//nodeValue: 节点值
+                        let good_price =this.parentNode.previousElementSibling.innerText;
+
+                        // console.log(good_price,good_name,good_num,good_id);
+
+                        //获取购物车中的商品
+                        //获取cookie
+                        let cookie_str = getCookie('carts') ? getCookie('carts'):"";
+                        let cookie_obj = that.convertStrToObj(cookie_str);
+
+                        if(good_id in cookie_obj){
+                            cookie_obj[good_id].count ++;
+                        }else{
+                            cookie_obj[good_id] = {
+                                "num" : good_num,    //商品编号
+                                "name" : good_name,
+								"price" : good_price,
+								"count" : 1
+                            }
+                        }
+                        //createCookie(key,value,json)
+                        createCookie('carts',JSON.stringify(cookie_obj),{expires:7,path:'/'});
+                       
+                    }
+                }
+
+            }
+            //将字符串转为对象
+			convertStrToObj(str){
+				if(!str){ //如果是空字符串，则返回空对象
+					return {};
+				}
+				return JSON.parse(str);
+			}
+        }
+        window.onload = function(){
+			new Product();
+		}
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>瀑布</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				list-style: none;
+			}
+			#box {
+				margin: 0 auto;
+				width: 700px;
+			}
+			ul {
+				width: 200px;
+				float: left;
+				margin: 0 auto;
+				margin-right: 10px;
+			}
+			img {
+				width: 200px;
+				padding-top: 10px;
+			}
+		</style>
+	
+	</head>
+
+	<body>
+		
+		<div id="box">
+			<ul></ul>
+			<ul></ul>
+			<ul></ul>
+
+		</div>
+		<script>
+			/*
+				瀑布流： 在最小高度的列所在位置加载新的商品
+				核心：求出最小高度列所在的位置
+			*/
+			//实际高度
+			let scrollHeight = null;
+			let scrollTop = null;
+			//页面的可视高度
+			let clientHeight = document.documentElement.clientHeight;
+			function WaterFall(){
+				//获取所有的ul
+				this.ul = document.querySelectorAll('#box ul');
+				//加载图片
+				this.loadImg();
+			}
+			WaterFall.prototype.loadImg = function(){
+				//遍历所有的图片
+				for(let i = 1;i < 57;i ++){
+					//创建img
+					let img = document.createElement('img');
+					//设置src
+					img.src = 'images/' + i + '.jpg';
+					//创建li
+					let li = document.createElement('li');
+					li.appendChild(img);
+					//在最小高度位置的ul中追加li
+					this.ul[this.minHeight()].appendChild(li);
+					//body的实际高度
+					scorllHeight = document.body.scrollHeight;
+				}
+			}
+			//求所有ul中最小高度的坐标值
+			WaterFall.prototype.minHeight = function(){
+				let min = this.ul[0].offsetHeight; //取出最列的高度
+				let indexA = 0;
+				for(let i = 0,len = this.ul.length;i < len;i ++){
+					if(min > this.ul[i].offsetHeight){
+						min = this.ul[i].offsetHeight;
+						indexA = i;
+					}
+				}
+				return indexA;
+			}
+
+			new WaterFall();
+
+			window.onscroll = function(){
+				scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+				if(scrollTop + clientHeight >= scrollHeight * 0.8){
+					new WaterFall();
+				}
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //随机生成6位数字
+        /* function numTestCode(n){
+            var arr = [];//存储生成的数字
+            for(var i = 0;i < n;i ++){
+                var num = parseInt(Math.random() * 10);
+                arr.push(num);
+            }
+            return arr.join("");
+        }
+        alert(numTestCode(6)); */
+
+
+
+        /* 
+        1.生成一个数组，装有单个字符，长度62
+          随机 0 ~ 61 的下标
+
+        2.随机 ASCII 码值
+            0 ~ 9
+            a ~ z    97 ~ 122
+            A ~ Z    65 ~ 90
+            随机: 0 ~ 122 
+        */
+
+        /*
+         function testCode(n){
+            var arr = [];
+            var list = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for(var i = 0;i < n;i ++){
+                
+                var num = parseInt(Math.random() * 62);
+                arr.push(list.charAt(num));
+            }
+            return arr.join("");
+        }
+        alert(testCode(6));  
+        */
+
+        /* 
+        function testCode(n){
+            var arr = [];
+            for(var i = 0;i < n;i ++){
+                var num = parseInt(Math.random() * 123);
+                if(num >= 0 &&num <= 9){
+                    arr.push(num);
+                }else if(num >= 97 && num <= 122 || num >= 65 && num <= 90){
+                    arr.push(String.fromCharCode(num));
+                }else{
+                    i --;
+                }
+            }
+            return arr.join("");
+        }
+        alert(testCode(6)); 
+        */
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        img{
+            display: block;
+        }
+
+        #main{
+            width: 600px;
+            height: 450px;
+            border: rgb(123, 255, 0) 1px solid;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        #title{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            padding: 10px;
+            border-bottom: rgb(123, 255, 0) 1px solid;
+        }
+
+        #body{
+            padding: 20px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        #btn{
+            height: 40px;
+           display: flex;
+           justify-content: space-evenly;
+           align-items: center;
+        }
+
+        button{
+            width: 50px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="title">
+            <h1>千锋班级成绩计算</h1>
+        </div>
+        <div id="body">
+            班级名称: <input type="text" id="name1"><br>
+            班级人数: <input type="text" id="person"><br>
+            班级总成绩: <input type="text" id="grades"><br>
+            平均成绩: <input type="text" id="ave"><br>
+            最高成绩: <input type="text" id="maxGrade"><br>
+            最低成绩: <input type="text" id="minGrade"><br>
+            成绩高低排序: <input type="text" id="sorts">
+        </div>
+        <div id="btn">
+            <input type="button" value="提交" id="btn1">
+            <input type="button" value="重置" id="btn2">
+        </div>
+    </div>
+    <script src="../tools.js"></script>
+    <script>
+        // 成绩管理系统（求出总成绩、平均成绩、最高成绩、最低成绩、成绩从高到低排序）
+        // 工具
+        function $(id){
+            return document.getElementById(id);
+        }
+
+        // 获取元素
+        var oName = $('name1');
+        var oPerson = $('person');
+        var oGrades = $('grades');
+        var oAve = $('ave');
+        var oMax = $('maxGrade');
+        var oMin = $('minGrade');
+        var oSort = $('sorts');
+        var oBtn1 = $('btn1');
+        var oBtn2 = $('btn2');
+
+        oBtn1.onclick =  function(){
+            // 获取人数
+            var num = parseInt(oPerson.value);
+
+            // 获取数组
+            var arr_score = new Array(num);
+
+            // 输入成绩
+            fnInputScore(arr_score);
+
+            // 总成绩
+            var sum = fnSum(arr_score);
+            console.log(sum);
+            oGrades.value = sum;
+
+            //平均成绩
+            var ave = fnAve(sum,num);
+            oAve.value = ave;
+
+            //最高成绩
+            var max = fnMax(arr_score);
+            oMax.value = max;
+
+            //最低成绩
+            var min = fnMin(arr_score);
+            oMin.value = min;
+
+            // 成绩排序
+            var sorts = fnSort(arr_score);
+            oSort.value = sorts;
+
+        }
+
+        oBtn2.onclick =  function(){
+            oName.value =  oPerson.value = oGrades.value = oAve.value = oAve.value = oMax.value = oMin.value = oSort.value = ''
+
+        }
+
+        // 输入成绩
+        function fnInputScore(arr){
+            for(var i = 0,len = arr.length; i < len; i++){
+                arr[i] = Number( (prompt('请输入第' + (i+1) + '个成绩')) );
+            }
+            return arr;
+        }
+
+        // 总成绩
+        function fnSum(arr){
+            return arr.reduce(function(prev,next){
+                return prev + next;
+            })
+        }
+
+        // 平均成绩
+        function fnAve(sum,num){
+            return (sum/num).toFixed(2);
+        }
+
+        // 最高成绩
+        function fnMax(arr){
+            return Math.max.apply(null,arr);
+        }
+
+        // 最低成绩
+        function fnMin(arr){
+            return Math.min.apply(null,arr);
+        }
+
+        // 成绩排序
+        function fnSort(arr){
+            return arr.sort(function(a,b){
+                return b - a ;
+            });
+        }
+    </script>
+</body>
+
+</html>

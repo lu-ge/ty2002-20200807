@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.goodList img{
+				width: 200px;
+				height: 200px;
+			}
+			.goodInfo{
+				display: inline-block;
+				width: 200px;
+			}
+			#buy{
+				position: fixed;
+				top: 300px;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="goodList">
+			<div class="goodInfo" data-good-id="sp1">
+				<img src="img/1.jpg"/><br />
+				<span>香蕉</span>
+				<span>30RMB</span>
+				<input type="button" name="" id="" value="加入购物车" class="addToCart"/>
+			</div>
+			<div class="goodInfo" data-good-id="sp2">
+				<img src="img/2.jpg"/><br />
+				<span>苹果</span>
+				<span>40RMB</span>
+				<input type="button" name="" id="" value="加入购物车" class="addToCart"/>
+			</div>
+			<div class="goodInfo" data-good-id="sp3">
+				<img src="img/3.jpg"/><br />
+				<span>梨</span>
+				<span>50RMB</span>
+				<input type="button" name="" id="" value="加入购物车" class="addToCart"/>
+			</div>
+		</div>
+		<input type="button" value="购物车(0)" id="buy"/>
+		
+		<script src="js/tools.js"></script>
+		<script src="./js/cookie.js"></script>
+
+		<script>
+			window.onload = function(){
+				new Product();
+			}
+			function Product(){
+				this.buy = document.querySelector('#buy');
+				this.add_cart = document.querySelectorAll('.addToCart');
+				this.init();
+				this.addEvent();
+			}
+			Product.prototype.addEvent = function(){
+				this.buy.onclick = function(){
+					location.href = 'cart--cookie.html';
+				}
+				
+				let that = this;
+				for(let i = 0,len = this.add_cart.length;i < len;i ++){
+					this.add_cart[i].onclick = function(){
+						let good_id  = this.parentNode.getAttribute('data-good-id');
+						let good_name = this.previousElementSibling.previousElementSibling.innerText;
+						let good_src =  this.parentNode.firstElementChild.src;
+						let good_price = parseInt(this.previousElementSibling.innerText);
+
+						
+						let cookie_str = getCookie('carts') ? getCookie('carts'):'';
+						let cookie_obj = convertStrToObj(cookie_str);
+
+						if(good_id in  cookie_obj){
+							cookie_obj[good_id].num ++;
+						}else{
+							cookie_obj[good_id] = {
+								"name" : good_name,
+								"src"  : good_src,
+								"price" : good_price,
+								"num"  : 1
+							}
+						}
+						createCookie('carts',JSON.stringify(cookie_obj));
+
+						let str = that.buy.value;
+						let re = /(\d+)/;
+						let num = Number(re.exec(str)[1]);
+						that.buy.value = `购物车(${++ num})`;
+					}
+				}
+			}
+
+			Product.prototype.init = function(){
+				
+				let cookie_str = getCookie('carts') ? getCookie('carts') : '';
+				let cookie_obj = convertStrToObj(cookie_str);
+				let sum = 0;
+				for(let key in cookie_obj){
+					sum += cookie_obj[key].num;
+				}
+				this.buy.value = `购物车(${sum})`;
+			}
+		</script>
+	</body>
+</html>

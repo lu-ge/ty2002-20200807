@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #p1{
+            width: 310px;
+            height: 40px;
+            background-color: rgb(121, 199, 235);
+            line-height: 40px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <p id="p1"></p>
+    <script>
+        let p1 = document.querySelector('#p1');
+
+        function setTime(endTime) {
+            let int = new Date();
+            let str = new Date(endTime);
+            //计算设定的时间和当前的时间有多少秒
+            let time = parseInt((str.getTime() - int.getTime()) / 1000);
+            // 计算还有多少天
+            let day = parseInt(time / (24 * 60 * 60));
+            // 计算还有多少小时
+            let hour = parseInt(time % (24 * 60 * 60) / (60 * 60));
+            // 计算还有多少分钟
+            let miner = parseInt(time % (60 * 60) / 60);
+            // 计算还有多少秒
+            let s = parseInt(time % 60);
+            
+            function toDouble(s){
+               return s < 10 ? '0' + s : s;
+            }
+
+            return `距离结束时间还有${toDouble(day)}天 ${toDouble(hour)}小时 ${toDouble(miner)}分 ${toDouble(s)}秒`;
+        }
+       
+        p1.innerHTML = setTime('2020-10-1 0:0:0');
+        setInterval(function () {
+            p1.innerHTML = setTime('2020-10-1 0:0:0');
+        }, 1000);
+    </script>
+</body>
+</html>

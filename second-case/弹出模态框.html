@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mark{
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0.3;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            z-index: 9999;
+        }
+        #up{
+            position: absolute;
+            left: 80px;
+            top: 10px;
+            display: none;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="jump" value="弹出">
+    <div id="mark"><input type="button" id="up" value="关闭"></div>
+    
+    <script>
+                let o_pop = document.querySelector('#jump');
+                let o_up = document.querySelector('#up');
+                let o_mark = document.querySelector('#mark');
+
+                o_pop.onclick = function(){
+                    o_mark.style.display = 'block';
+                    o_up.style.display = 'block';
+                    o_up.onclick = function(){
+                        o_mark.style.display = 'none';
+                    }
+                }
+            
+    </script>
+</body>
+</html>

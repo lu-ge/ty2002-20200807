@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.cartList {
+				width: 1205px;
+			}
+			
+			ul {
+				list-style: none;
+			}
+			
+			.cartHead {
+				border: 1px solid black;
+				height: 50px;
+			}
+			
+			.cartHead li {
+				width: 200px;
+				height: 50px;
+				float: left;
+				font: 32px/50px "楷体";
+				text-align: center;
+			}
+			
+			.goodInfo {
+				border: 1px solid black;
+				border-top: none;
+				height: 50px;
+			}
+			
+			.goodInfo li {
+				float: left;
+				width: 200px;
+				height: 50px;
+				float: left;
+				font: 24px/50px "";
+				text-align: center;
+			}
+			
+			.goodInfo li input {
+				width: 30px;
+				text-align: center;
+			}
+			
+			.goodInfo li.num a {
+				display: inline-block;
+				width: 10px;
+				height: 20px;
+				font: 12px/20px "";
+				background: #ddd;
+				text-decoration: none;
+			}
+			
+			.goodInfo li img {
+				width: 40px;
+				height: 40px;
+				margin-top: 5px;
+				text-align: center;
+			}
+			
+			.blank {
+				height: 50px;
+				font: 32px/50px "";
+				text-align: center;
+				border: 1px solid black;
+				border-top: none;
+				display: none;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div class="cartList">
+			<ul class="cartHead">
+				<li>缩略图</li>
+				<li>品名</li>
+				<li>单价</li>
+				<li>数量</li>
+				<li>小计</li>
+				<li>操作</li>
+			</ul>
+			<!-- <ul class="goodInfo" data-good-id="sp1">
+				<li><img src="img/1.jpg" /></li>
+				<li>测试</li>
+				<li>30</li>
+				<li class="num">
+					<a href="javascript:;" class="minus">-</a>
+					<input type="text" name="" id="" value="2" />
+					<a href="javascript:;" class="plus">+</a>
+				</li>
+				<li class="total">60</li>
+				<li><a href="javascript:;" class="del">删除</a></li>
+			</ul> -->
+			<div class="blank">
+				您的购物车空空如也~~
+			</div>
+		</div>
+        <script src="js/tools.js"></script>
+        <script src="./js/cookie.js"></script>
+
+		<script>
+			window.onload = function(){
+				new Cart();
+			}
+			function Cart(){
+				this.div = document.querySelector('.cartList');
+				this.empty = document.querySelector('.blank');
+				this.init();
+			}
+			Cart.prototype.init = function(){
+				
+                let cookie_str = getCookie('carts') ? getCookie('carts') : '';
+                
+                if(!cookie_str){
+					this.empty.style.display = 'block';
+				}else{
+					this.empty.style.display = 'none';
+					let cookie_obj = convertStrToObj(cookie_str);
+					for(let key in cookie_obj){
+                        let good = cookie_obj[key];
+                        
+						let o_ul = document.createElement('ul');
+						o_ul.className = 'goodInfo';
+						o_ul.setAttribute('data-good-id',key);
+						let str = `
+						<li><img src="${good.src}" /></li>
+						<li>${good.name}</li>
+						<li>${good.price}</li>
+						<li class="num">
+							<a href="javascript:;" class="minus">-</a>
+							<input type="text" name="" id="" value="${good.num}" />
+							<a href="javascript:;" class="plus">+</a>
+						</li>
+						<li class="total">${good.price * good.num}</li>
+						<li><a href="javascript:;" class="del">删除</a></li>
+						`;
+						o_ul.innerHTML = str;
+						this.div.appendChild(o_ul);
+					}
+
+					//减号
+					let minus = document.querySelectorAll('.minus');
+					for(let i = 0,len = minus.length;i < len ; i ++){
+						minus[i].onclick = function(){
+							let good_id = this.parentNode.parentNode.getAttribute('data-good-id');
+							//获取cookie
+							
+							let cookie_str = getCookie('carts') ? getCookie('carts'):'';
+						    let cookie_obj = convertStrToObj(cookie_str);
+
+							if(cookie_obj[good_id].num > 0){
+								cookie_obj[good_id].num --;
+							}
+
+							createCookie('carts',JSON.stringify(cookie_obj));
+							this.nextElementSibling.value = cookie_obj[good_id].num;
+							this.parentNode.nextElementSibling.innerHTML = cookie_obj[good_id].num * cookie_obj[good_id].price;
+
+						}
+					}
+					//加号
+					let plus = document.querySelectorAll('.plus');
+					for(let i = 0,len = plus.length;i<len;i ++){
+						plus[i].onclick = function(){
+							let good_id = this.parentNode.parentNode.getAttribute('data-good-id');
+							
+							let cookie_str = getCookie('carts') ? getCookie('carts'):'';
+						    let cookie_obj = convertStrToObj(cookie_str);
+							cookie_obj[good_id].num ++;
+
+							createCookie('carts',JSON.stringify(cookie_obj));
+							this.previousElementSibling.value = cookie_obj[good_id].num;
+							this.parentNode.nextElementSibling.innerHTML = cookie_obj[good_id].num * cookie_obj[good_id].price;
+						}
+					}
+
+					//数量框
+					let input = document.querySelectorAll('.num input');
+					for(let i = 0,len = input.length;i < len;i ++){
+						input[i].onblur = function(){
+							let good_id = this.parentNode.parentNode.getAttribute('data-good-id');
+							let cookie_str = getCookie('carts') ? getCookie('carts'):'';
+						    let cookie_obj = convertStrToObj(cookie_str);
+							
+							let num = parseInt(this.value);
+							if(isNaN(num) || num < 0){
+								num = 1;
+							}
+							cookie_obj[good_id].num = num;
+							createCookie('carts',JSON.stringify(cookie_obj));
+							this.value = cookie_obj[good_id].num;
+							this.parentNode.nextElementSibling.innerHTML = cookie_obj[good_id].num * cookie_obj[good_id].price;
+						}
+					}
+					//删除
+					let del = document.querySelectorAll('.del');
+					for(let i = 0,len = del.length;i < len ; i ++){
+						del[i].onclick = function(){
+							let good_id = this.parentNode.parentNode.getAttribute('data-good-id');
+
+							let cookie_str = getCookie('carts') ? getCookie('carts'):'';
+						    let cookie_obj = convertStrToObj(cookie_str);
+
+							//delete 删除对象中的指定属性
+							delete cookie_obj[good_id];
+
+							createCookie('carts',JSON.stringify(cookie_obj));
+							//删除ul
+							this.parentNode.parentNode.remove();
+						}
+					}
+
+				}
+			}
+		</script>
+	</body>
+
+</html

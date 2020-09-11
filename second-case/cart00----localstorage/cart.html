@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <title>JavaScript</title>
+		<style>
+			table{border-collapse:collapse;}
+			td{border:1px solid;}
+		</style>
+	
+    </head>
+    <body>
+		<table id="tab">
+			<tr><td>序号</td><td>商品名称</td><td>商品单价</td><td>数量</td></tr>
+		</table>
+		 <script>
+			function Cart(){
+				
+				this.init(); //调用初始化方法
+			}
+			Cart.prototype.init = function(){
+				//获取tab
+				let o_tab = document.querySelector('#tab');
+				//获取所有的数据
+				let storage = window.localStorage;
+				//遍历storage对象，取出所有的key
+				for(let i = 0,len = storage.length;i < len;i ++){
+					//取出所有的key
+					let key = storage.key(i);
+					//取出所有的value
+					let value = storage.getItem(key);
+					// console.log(value);
+					//将字符串转为对象
+					let good = JSON.parse(value);
+					// console.log(good);
+					//动态布局
+					//在当前tab中插入一行
+					let _tr = o_tab.insertRow();
+					//在行中插入单元格
+					let _td = _tr.insertCell();
+					_td.innerHTML = good.id;
+					_td = _tr.insertCell();
+					_td.innerHTML = good.name;
+					_td = _tr.insertCell();
+					_td.innerHTML = good.price;
+					_td = _tr.insertCell();
+					_td.innerHTML = good.num;
+				}
+			}
+			new Cart();
+		</script>
+		<!-- <script>
+			function Cart(){
+				this.init();//调用初始化
+			}
+			Cart.prototype.init = function(){
+				let o_tab = document.querySelector('#tab');
+				let storage = window.localStorage;
+				//遍历storage对象，取出所有的key
+				for(let i = 0,len = storage.length;i < len;i ++){
+					let key = storage.key(i);
+					let value = storage.getItem(key);
+					//将字符串转为对象
+					let good = JSON.parse(value);
+					console.log(good);
+
+					// 动态布局
+					let _tr = o_tab.insertRow();
+					let _td = _tr.insertCell();
+					_td.innerHTML = good.id;
+
+					_td = _tr.insertCell();
+					_td.innerHTML = good.name;
+
+					_td = _tr.insertCell();
+					_td.innerHTML = good.price;
+
+					_td = _tr.insertCell();
+					_td.innerHTML = good.num;
+				}
+				
+			}
+			new Cart();
+		</script> -->
+    </body>
+</html>

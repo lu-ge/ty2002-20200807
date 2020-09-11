@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>随便敲敲</title>
+		<style>
+            *{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+            .menu_one>li{
+                width: 100px;
+                height: 50px;
+                background-color: skyblue;
+                float: left;
+                text-align: center;
+                line-height: 50px;
+                position: relative;
+            }
+            .menu_one li .san{
+                position: absolute;
+                top: 20px;
+                left: 84px;
+                width: 0; 
+                height: 0;
+                border-width: 8px;
+                border-style: solid;
+                border-color:#fff transparent transparent transparent;
+            }
+            .menu_two>li{
+                height: 0;
+                background-color: aqua;
+                overflow: hidden;
+            }
+            .menu_one>li:hover .menu_two>li{
+                height: 50px;
+                background-color: rgb(238, 173, 186);
+            }
+            .menu_one li .menu_two>li:hover{
+                background-color: aqua;
+            }
+        </style>
+	</head>
+	<body>
+		<ul class='menu_one'>
+			<li>一级目录
+				
+			</li>
+			<li>一级目录</li>
+			<li>一级目录</li>
+			<li>一级目录
+                <div class="san"></div>
+                <ul class='menu_two'>
+					<li>二级目录</li>
+					<li>二级目录</li>
+					<li>二级目录</li>
+					<li>二级目录</li>
+                </ul>
+            </li>
+	</ul>
+	</body>
+</html>

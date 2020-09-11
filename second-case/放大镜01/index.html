@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	
+	</head>
+	<body>
+		<div id="div1">
+			<div class="small_pic">
+				<span class="mark"></span>   <!--遮罩层-->
+				<span class="float_layer"></span>
+				<img src="img/small.jpg" />
+			</div>
+			<div class="big_pic">
+				<img src="img/big.jpg" />
+			</div>
+		</div>
+		<script>
+			/*
+				分析：
+
+				事件：
+					移入： 滑块显示   大图盒子显示
+					移出： 滑块消失   大图盒子消失
+					移动： 跟随效果（滑块） 
+						   鼠标在滑块正中心（鼠标的坐标值 - 滑块宽度的一半）
+						   边界：（左： 0   上 ： 0   右：图片的宽度 - 滑块的宽度  下：图片的高度- 滑块的高度）
+
+						   核心：求比例
+						   p_x = 当前滑块所在的left位置 / 小图的宽 - 滑块的宽
+						   p_y = 当前滑块所在的top位置 / 小图的高 - 滑块的高
+
+						   设置大图的位置
+						   	left = (大图的宽 - 大图所在盒子的宽） * p_x
+							top = (大图的高 - 大图所在盒子的高) * p_y
+			*/
+			function Magnifier(){
+				//属性
+				//1. 大盒子
+				this.big_box = $('#div1')[0];
+				//2. 小图盒子
+				this.small_pic = $('.small_pic')[0];
+				//3. 遮罩
+				this.mark = $('.mark')[0];
+				//4. 滑块
+				this.float = $('.float_layer')[0];
+				//5. 大图盒子
+				this.big_pic = $('.big_pic')[0];
+				//6. 大图
+				this.big_img = $('.big_pic img')[0];
+
+				//调用添加事件的方法
+				this.addEvent();
+			}	
+			Magnifier.prototype.addEvent = function(){
+				//当我鼠标移入遮罩时，滑块和大图显示出来
+				this.mark.onmouseenter = function(){
+					this.float.style.display = 'block';
+					this.big_pic.style.display = 'block';
+				}.bind(this);
+				// 移出： 滑块消失   大图盒子消失
+				this.mark.onmouseleave = function(){
+					this.float.style.display = 'none';
+					this.big_pic.style.display = 'none';
+				}.bind(this);
+				// 移动： 跟随效果（滑块） 
+				// 		   鼠标在滑块正中心（鼠标的坐标值 - 
+				// 		   边界：（左： 0   上 ： 0   右：图片的宽度 - 滑块的宽度  下：图片的高度- 滑块的高度）
+
+				// 		   核心：求比例
+				// 		   p_x = 当前滑块所在的left位置 / 小图的宽 - 滑块的宽
+				// 		   p_y = 当前滑块所在的top位置 / 小图的高 - 滑块的高
+
+				// 		   设置大图的位置
+				// 		   	left = (大图的宽 - 大图所在盒子的宽） * p_x
+				// 			top = (大图的高 - 大图所在盒子的高) * p_y
+				this.mark.onmousemove = function(evt){
+					let e = evt || window.event;
+					//让鼠标在滑块的正中间
+					let left = e.offsetX - this.float.offsetWidth / 2;
+					let top = e.offsetY - this.float.offsetHeight / 2;
+					//边界
+					if(left <= 0){
+						left = 0;
+					}else if(left >= this.mark.offsetWidth - this.float.offsetWidth){
+						left = this.mark.offsetWidth - this.float.offsetWidth;
+					}
+					if(top <= 0){
+						top = 0;
+					}else if(top >= this.mark.offsetHeight - this.float.offsetHeight){
+						top = this.mark.offsetHeight - this.float.offsetHeight;
+					}
+					//设置滑块的坐标值
+					this.float.style.left = left + 'px';
+					this.float.style.top = top + 'px';
+
+					//求比例
+					let p_x = left / (this.mark.offsetWidth - this.float.offsetWidth);
+					let p_y = top / (this.mark.offsetHeight - this.float.offsetHeight);
+
+					//设置大图的坐标值
+					this.big_img.style.left = -(this.big_img.offsetWidth - this.big_pic.offsetWidth) * p_x + 'px';
+					this.big_img.style.top = -(this.big_img.offsetHeight - this.big_pic.offsetHeight) * p_y + 'px';
+				}.bind(this);
+
+			}
+
+
+			//工具
+			function $(selector){
+				return document.querySelectorAll(selector);
+			}
+
+
+			new Magnifier();
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.goodList img{
+				width: 200px;
+				height: 200px;
+			}
+			.goodInfo{
+				display: inline-block;
+				width: 200px;
+			}
+			#buy{
+				position: fixed;
+				top: 300px;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="goodList">
+			<div class="goodInfo" data-good-id="sp1">
+				<img src="img/1.jpg"/><br />
+				<span>香蕉</span>
+				<span>30RMB</span>
+				<input type="button" name="" id="" value="加入购物车" class="addToCart"/>
+			</div>
+			<div class="goodInfo" data-good-id="sp2">
+				<img src="img/2.jpg"/><br />
+				<span>苹果</span>
+				<span>40RMB</span>
+				<input type="button" name="" id="" value="加入购物车" class="addToCart"/>
+			</div>
+			<div class="goodInfo" data-good-id="sp3">
+				<img src="img/3.jpg"/><br />
+				<span>梨</span>
+				<span>50RMB</span>
+				<input type="button" name="" id="" value="加入购物车" class="addToCart"/>
+			</div>
+		</div>
+		<input type="button" value="购物车(0)" id="buy"/>
+		
+		<script src="js/tools.js"></script>
+		<!-- <script>
+
+			window.onload = function(){
+				new Product();
+			}
+			function Product(){
+				this.buy = document.querySelector('#buy');
+				this.add_cart = document.querySelectorAll('.addToCart');
+				this.init();
+				this.addEvent();
+			} 
+			Product.prototype.addEvent = function (){
+				this.buy.onclick = function(){
+					location.href = 'cart.html';
+				}
+				//记录this
+				let that = this;
+
+				for(let i = 0,len = this.add_cart.length;i < len;i ++){
+					this.add_cart[i].onclick = function(){
+						let good_id = this.parentNode.getAttribute('data-good-id');
+						let good_name = this.previousElementSibling.previousElementSibling.innerText;
+						let good_src = this.parentNode.firstElementChild.src;
+						let good_price = parseInt(this.previousElementSibling.innerText);
+
+						let storage = window.localStorage;
+						let storage_str = storage.getItem('carts') ? storage.getItem('carts'):'';
+						let storage_obj = convertStrToObj(storage_str);
+
+						if(good_id in storage_obj){
+							storage_obj[good_id].num ++;
+						}else{
+							storage_obj[good_id] = {
+								"name" : good_name,
+								"src" : good_src,
+								"price" : good_price,
+								"num" : 1
+							}
+						}
+						storage.setItem('carts',JSON.stringify(storage_obj));
+
+						//处理购物车中数量的问题
+						let str = that.buy.value;
+						//取出   购物车(0)  的数字
+						let re = /(\d+)/;
+						let num = Number(re.exec(str)[1]);
+						that.buy.value = `购物车(${++ num})`;
+					}
+				}
+			}
+
+			Product.prototype.init = function(){
+				//获取localStorage中的商品信息
+				let storage = window.localStorage;
+				//获取商品信息
+				let storage_str = storage.getItem('carts') ? storage.getItem('carts') : '';
+				//转对象
+				let storage_obj = convertStrToObj(storage_str);
+				//总数量
+				let sum = 0;
+				//遍历所有商品的数量
+				for(let key in storage_obj){
+					sum += storage_obj[key].num;
+				}
+				
+				this.buy.value = `购物车(${sum})`;
+			}
+		</script> -->
+		<script>
+			window.onload = function(){
+				new Product();
+			}
+			function Product(){
+				this.buy = document.querySelector('#buy');
+				this.add_cart = document.querySelectorAll('.addToCart');
+				this.init();
+				this.addEvent();
+			}
+			Product.prototype.addEvent = function(){
+				this.buy.onclick = function(){
+					location.href = 'cart.html';
+				}
+				
+				let that = this;
+				for(let i = 0,len = this.add_cart.length;i < len;i ++){
+					this.add_cart[i].onclick = function(){
+						let good_id  = this.parentNode.getAttribute('data-good-id');
+						let good_name = this.previousElementSibling.previousElementSibling.innerText;
+						let good_src =  this.parentNode.firstElementChild.src;
+						let good_price = parseInt(this.previousElementSibling.innerText);
+
+						let storage = window.localStorage;
+						let storage_str = storage.getItem('carts') ? storage.getItem('carts'):'';
+						let storage_obj = convertStrToObj(storage_str);
+
+						if(good_id in  storage_obj){
+							storage_obj[good_id].num ++;
+						}else{
+							storage_obj[good_id] = {
+								"name" : good_name,
+								"src"  : good_src,
+								"price" : good_price,
+								"num"  : 1
+							}
+						}
+						storage.setItem('carts',JSON.stringify(storage_obj));
+
+						let str = that.buy.value;
+						let re = /(\d+)/;
+						let num = Number(re.exec(str)[1]);
+						that.buy.value = `购物车(${++ num})`;
+					}
+				}
+			}
+
+			Product.prototype.init = function(){
+				let storage = window.localStorage;
+				let storage_str = storage.getItem('carts') ? storage.getItem('carts') : '';
+				let storage_obj = convertStrToObj(storage_str);
+				let sum = 0;
+				for(let key in storage_obj){
+					sum += storage_obj[key].num;
+				}
+				this.buy.value = `购物车(${sum})`;
+			}
+		</script>
+	</body>
+</html>

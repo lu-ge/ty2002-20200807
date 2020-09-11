@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 据当前日期7天后的日期时间
+        var day = new Date();
+        // var times1 = day.toLocaleString();
+        var times1 = day.getFullYear() + '年' + day.getMonth() + '月' + day.getDate() + '日' + day.getHours() + '时' + day.getMinutes() + '分' + day.getSeconds() + '秒';
+        console.log(times1);
+
+        var times2 = day.getFullYear() + '年' + day.getMonth() + '月' + day.getDate()+7 + '日' + day.getHours()+7*24 + '时' + day.getMinutes()+7*24*60 + '分' + day.getSeconds()+7*24*60*60 + '秒';
+        console.log(times1);
+        
+    </script>
+</body>
+</html>

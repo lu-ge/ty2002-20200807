@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>成绩管理系统</h1>
+    <p>请输入班级名称：<input type="text" name="" id="cName"></p>
+    <p>请输入班级人数：<input type="text" name="" id="cNum"></p>
+
+    <div id="box"></div>
+    <p><input type="button" value="计算" id="submit"> <input type="button" value="清空" id="reset"></p>
+
+    <script src="./tools.js"></script>
+    <script>
+        /*  
+
+            得到 班级名、人数
+
+            输出： 总成绩  平均成绩  最高成绩  最低成绩  成绩排序
+        */
+        var o_name = $('cName');
+        var o_num = $('cNum');
+        var o_div = $('box');
+        var o_submit = $('submit');
+        var o_reset = $('reset');
+
+
+        //添加事件
+        o_submit.onclick = function(){
+            //获取人数
+            var i_num = parseInt(o_num.value);
+            //创建数组
+            var arr_score = new Array(i_num);
+            //输入成绩
+            fnInputScore(arr_score);
+            //总成绩
+            var sum = fnSum(arr_score);
+            //平均成绩
+            var ave = fnAve(sum,i_num);
+            //最高成绩
+            var max = fnMax(arr_score);
+            //最低成绩
+            var min = fnMin(arr_score);
+            //成绩排序
+            fnSort(arr_score);
+            o_div.innerHTML = '总成绩:' + sum + '<br>平均成绩：' + ave + '<br>最高成绩：' + max + '<br>最低成绩：' + min + '<br>成绩排序：' + arr_score;
+
+        }
+        o_reset.onclick = function(){
+            o_name.value = o_num.value = '';
+            o_div.innerHTML = '';
+        }
+        //输入成绩
+        function fnInputScore(arr){
+            for(var i = 0,len = arr.length;i < len;i ++){
+                arr[i] = Number(prompt('请输入' + (i + 1) + '个成绩：'));
+            }
+            return arr;
+        }
+        //求总成绩
+        function fnSum(arr){
+            // return arr.reduce(function(prev,next){
+            //     return prev + next;
+            // })
+
+            var sum = 0;
+            for(var i = 0,len = arr.length;i < len;i ++){
+                sum += arr[i];
+            }
+            return sum;
+        }
+        //求平均成绩
+        function fnAve(sum,n){
+            return (sum / n).toFixed(2);
+        }
+        //求最高成绩
+        function fnMax(arr){
+            // return Math.max.apply(null,arr);
+            var min = arr[0];
+            for(var i = 0,len = arr.length;i <len;i ++){
+                if(min > arr[i]){
+                    min = arr[i];
+                }
+            }
+            return min;
+        }
+        //求最低成绩
+        function fnMin(arr){
+            // return Math.min.apply(null,arr);
+            var max = arr[0];
+            for(var i = 0,len = arr.length;i < len;i ++){
+                if(max < arr[i]){
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        //成绩排序
+        function fnSort(arr){
+            return arr.sort(function(a,b){return b - a;});
+        }
+    </script>
+</body>
+</html>

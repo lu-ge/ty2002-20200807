@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 输入验证码：<input type="text" > <span id="vc"></span> <button id="btn">看不清楚换一张</button> -->
+    <script>
+
+        var arr = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",0,1,2,3,4,5,6,7,8,9];
+        
+        var rand1 = Math.floor(Math.random()*62);
+        var rand2 = Math.floor(Math.random()*62);
+        var rand3 = Math.floor(Math.random()*62);
+        var rand4 = Math.floor(Math.random()*62);
+        
+        document.write('验证码为' + arr[rand1] + arr[rand2] + arr[rand3] + arr[rand4] );
+    </script>
+</body>
+</html>

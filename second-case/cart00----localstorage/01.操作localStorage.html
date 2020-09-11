@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let storage = window.localStorage; //获取到localStorage对象
+        //添加数据
+        storage.name = '周伟涛';
+        storage['age'] = 20;
+        storage.setItem('sex','女');
+
+        //获取数据
+         console.log(storage.name);
+         console.log(storage['age']);
+         console.log(storage.getItem('sex'));//建议
+
+        // console.log(storage);
+        //改
+        // storage.sex = '男';
+        
+        //删除
+
+        // storage.name = '';
+        // storage.removeItem('sex');
+
+
+        // 遍历
+        // for(let i = 0,len = storage.length;i < len;i ++){
+        //     console.log(storage.key(i));//name  age  sex
+        // }
+
+    </script>
+</body>
+</html>
